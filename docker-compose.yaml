@@ -1,0 +1,38 @@
+---
+# options:
+# mongo:7-jammy
+# mongo:6-jammy
+version: '3.8'
+services:
+  db:
+    restart: always
+    image: mongo:7-jammy
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: $DB_USER
+      MONGO_INITDB_ROOT_PASSWORD: $DB_PASSWORD
+    ports:
+      # MY_PORT-vs-Container
+      - '${DB_PORT}:27017'
+    volumes:
+      - mongo:/data/db
+  ## MongoExpress UI
+  ## to Enable --> uncomment and also in .env variables file    
+  # mongo-express:
+  #   image: mongo-express:1.0.0-20-alpine3.18
+  #   restart: always
+  #   ports:
+  #     - 8081:8081
+  #   environment:
+  #     # mongo-express web username / password
+  #     ME_CONFIG_BASICAUTH_USERNAME: $MONGO_UI_USER
+  #     ME_CONFIG_BASICAUTH_PASSWORD: $MONGO_UI_PASSWORD
+  #     # mongo-db server creds
+  #     ME_CONFIG_MONGODB_SERVER: db # MongoDB container name
+  #     ME_CONFIG_MONGODB_ADMINUSERNAME: $DB_USER # MongoDB admin username
+  #     ME_CONFIG_MONGODB_ADMINPASSWORD: $DB_PASSWORD # MongoDB admin password
+  #     ME_CONFIG_MONGODB_PORT: $DB_PORT # MongoDB port
+  #     ME_CONFIG_SITE_SSL_ENABLED: 'false' # Enable SSL
+  #     ME_CONFIG_OPTIONS_EDITORTHEME: ambiance # opts: default | ambiance (dark one) | dracula | etc
+volumes:
+  mongo:
+    driver: local

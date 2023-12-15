@@ -1,0 +1,16 @@
+site_name: demo-mongo2
+site_description: 'Main documentation for demo-mongo2 project'
+repo_url: https://github.com/xidp/demo-mongo2.git
+edit_uri: edit/master/docs
+
+# plugins:
+#   - techdocs-core
+
+# For sidebar navigation
+nav:
+  - index.md
+  - Overview:
+      - What is demo-mongo2?: 'overview/what-is-demo-mongo2.md'
+      - Project Roadmap: 'overview/roadmap.md'
+  - Getting Started:
+      - Getting Started: 'index.md'
